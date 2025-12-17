@@ -1,0 +1,23 @@
+clean:
+	rm *.out
+
+game:
+ i686-w64-mingw32-gcc main.c utils.c renderer.c -o game.exe -I"C:\allegro-5.0.10-mingw-4.7.0/include" -L"C:\allegro-5.0.10-mingw-4.7.0/lib" -lallegro-5.0.10-monolith-md -lm -g
+	gcc main.c -o game.out \
+		utils.c \
+		renderer.c \
+		-lm -g\
+		`pkg-config allegro-5 allegro_main-5 \
+		allegro_font-5 \
+		allegro_image-5 allegro_primitives-5 \
+		 --libs --cflags`
+
+game-win:
+	gcc main.c -o game.out \
+		utils.c \
+		renderer.c \
+		-lm -g\
+		$(shell pkg-config allegro-5 allegro_main-5 \
+		allegro_font-5 \
+		allegro_image-5 allegro_primitives-5 \
+		 --libs --cflags)
